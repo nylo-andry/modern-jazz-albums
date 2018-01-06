@@ -11,8 +11,8 @@ const paths = {
   dest: 'dist',
   index: 'dist/*.html',
   elm: 'src/elm/**/*.elm',
-  sass: 'scss/**/*.scss',
-  static: 'src/*.html',
+  sass: 'src/scss/**/*.scss',
+  static: ['src/**/*.html', 'src/**/*.js'],
   nodeModules: 'node_modules'
 };
 
@@ -23,7 +23,7 @@ gulp.task('elm-init', elm.init);
 gulp.task('elm', ['elm-init'], () => gulp.src(paths.elm)
   .pipe(plumber())
   .pipe(elm())
-  .pipe(gulp.dest(paths.dest))
+  .pipe(gulp.dest('dist/js'))
   .pipe(connect.reload())
 );
 
@@ -33,7 +33,7 @@ gulp.task('static', ['elm'], () => gulp.src(paths.static)
 
 gulp.task('build', ['static', 'sass'], () => {
   const target = gulp.src(paths.index);
-  const sources = gulp.src(['dist/*.js', 'dist/*.css'], { read: false });
+  const sources = gulp.src(['dist/**/*.js', 'dist/**/*.css'], { read: false });
 
   return target.pipe(inject(sources, { relative: true }))
     .pipe(gulp.dest(paths.dest))
