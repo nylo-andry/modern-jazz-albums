@@ -3,6 +3,33 @@
 .app-content {
   margin: 3rem auto;
   width: 30rem;
+
+  @media screen 
+    and (min-width: 320px) 
+    and (max-width: 640px) {
+      margin: 2rem 0 0;
+      width: 100%;
+  }
+
+  .active {
+    background-color: #1cb841;
+  }
+
+  .non-active {
+    background-color: #ca3c3c;
+  }
+
+  .album-item {
+    padding: .5rem;
+
+    &:nth-of-type(even) {
+      background-color: #ddd;
+    }
+
+    &:nth-of-type(odd) {
+      background-color: #eee;
+    }
+  }
 }
 
 .header-menu {
@@ -14,5 +41,15 @@
 
   .pure-menu-heading {
     cursor: default;
+  }
+}
+
+.pure-form {
+  .form-control {
+    @media screen 
+    and (min-width: 320px) 
+    and (max-width: 640px) {
+      width: 100%;
+    }  
   }
 }

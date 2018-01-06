@@ -93,12 +93,16 @@ viewButtonListened album =
     let
         buttonText =
             if album.listened then
-                "Mark as not-listened"
+                "Cancel"
             else
-                "Mark as listened"
+                "Done"
     in
         button
             [ class "pure-button pure-u-2-5"
+            , classList
+                [ ( "active", not album.listened )
+                , ( "non-active", album.listened )
+                ]
             , onClick (AlbumListened album.id (not album.listened))
             ]
             [ text buttonText ]
@@ -110,7 +114,7 @@ viewAlbum album =
         actionButton =
             viewButtonListened album
     in
-        div [ class "pure-g" ]
+        div [ class "pure-g album-item" ]
             [ span [ class "pure-u-3-5" ] [ text album.title ]
             , actionButton
             ]
@@ -127,17 +131,32 @@ viewLogin =
         [ div [ class "pure-control-group" ]
             [ label [ for "name" ]
                 [ text "Email" ]
-            , input [ id "name", placeholder "Email", type_ "text", onInput OnEmailInput ]
+            , input
+                [ id "name"
+                , class "form-control"
+                , placeholder "Email"
+                , type_ "text"
+                , onInput OnEmailInput
+                ]
                 []
             ]
         , div [ class "pure-control-group" ]
             [ label [ for "password" ]
                 [ text "Password" ]
-            , input [ id "password", placeholder "Password", type_ "password", onInput OnPasswordInput ]
+            , input
+                [ id "password"
+                , class "form-control"
+                , placeholder "Password"
+                , type_ "password"
+                , onInput OnPasswordInput
+                ]
                 []
             ]
         , div [ class "pure-controls" ]
-            [ button [ class "pure-button pure-button-primary", onClick Login ]
+            [ button
+                [ class "pure-button pure-button-primary form-control"
+                , onClick Login
+                ]
                 [ text "Login" ]
             ]
         ]
@@ -146,9 +165,6 @@ viewLogin =
 view : Model -> Html Msg
 view model =
     let
-        x =
-            Debug.log " view"
-
         viewContent =
             if model.authenticated then
                 viewAlbumList model.albums
