@@ -7,7 +7,7 @@
   @media screen 
     and (min-width: 320px) 
     and (max-width: 640px) {
-      margin: 2rem 0 0;
+      margin: 3rem 0 0;
       width: 100%;
   }
 
@@ -41,10 +41,22 @@
 
   .pure-menu-heading {
     cursor: default;
+    margin-top: .5rem;
+  }
+
+  .logout {
+    float: right;
+    margin: .5rem 1rem;
+  }
+
+  .not-displayed {
+    display: none;
   }
 }
 
 .pure-form {
+  padding-top: 1rem;
+
   @media screen 
     and (min-width: 320px) 
     and (max-width: 640px) {

@@ -38,6 +38,7 @@ type Msg
     | Login
     | NewAlbums (List Album)
     | AlbumListened Int Bool
+    | Logout
 
 
 initModel : Model
@@ -79,12 +80,21 @@ update msg model =
         AlbumListened id listened ->
             ( model, albumListened ( id, listened ) )
 
+        Logout ->
+            ( model, logout 0 )
 
-viewMenu : Html Msg
-viewMenu =
+
+viewMenu : Model -> Html Msg
+viewMenu model =
     div [ class "pure-menu pure-menu-horizontal header-menu" ]
         [ span [ class "pure-menu-heading" ]
             [ text "92 Modern Jazz Albums" ]
+        , button
+            [ class "pure-button logout"
+            , classList [ ( "not-displayed", not model.authenticated ) ]
+            , onClick Logout
+            ]
+            [ text "Logout" ]
         ]
 
 
@@ -172,7 +182,7 @@ view model =
                 viewLogin
     in
         div []
-            [ viewMenu
+            [ viewMenu model
             , div [ class "app-content" ] [ viewContent ]
             ]
 
@@ -195,6 +205,9 @@ port newAlbums : (List Album -> msg) -> Sub msg
 
 
 port albumListened : ( Int, Bool ) -> Cmd msg
+
+
+port logout : Int -> Cmd msg
 
 
 main : Program Never Model Msg

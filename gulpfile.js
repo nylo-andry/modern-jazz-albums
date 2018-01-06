@@ -10,7 +10,7 @@ const del = require('del');
 const paths = {
   dest: 'dist',
   index: 'dist/*.html',
-  elm: 'src/*.elm',
+  elm: 'src/elm/**/*.elm',
   sass: 'scss/**/*.scss',
   static: 'src/*.html',
   nodeModules: 'node_modules'

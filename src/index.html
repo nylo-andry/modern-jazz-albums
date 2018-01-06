@@ -28,22 +28,35 @@
   <!-- inject:js -->
   <!-- endinject -->
   <script>
-    var app = Elm.Main.fullscreen();
+    const app = Elm.Main.fullscreen();
 
-    app.ports.login.subscribe(doLogin);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        app.ports.loginStateChange.send({ authenticated: true });
+        app.ports.login.unsubscribe(doLogin);
+
+        fetchAlbums(app.ports.newAlbums);
+        subscribeToAlbumListened(app.ports.albumListened);
+        subscribeToLogout(app.ports.logout);
+      } else {
+        app.ports.loginStateChange.send({ authenticated: false });
+        app.ports.login.subscribe(doLogin);
+      }
+    });
+
+    function logout() {
+      firebase.auth().signOut();
+    }
 
     function doLogin(credentials) {
       firebase.auth()
-        .signInWithEmailAndPassword(credentials.email, credentials.password)
-        .then(() => {
-          app.ports.loginStateChange.send({ authenticated: true });
-
-          fetchAlbums(app.ports.newAlbums);
-          subscribeToAlbumListened(app.ports.albumListened);
-        })
-        .catch((error) => {
-          app.ports.loginStateChange.send({ authenticated: false });
-        });
+        .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+        .then(() => firebase.auth()
+            .signInWithEmailAndPassword(credentials.email, credentials.password)
+            .catch((error) => {
+              app.ports.loginStateChange.send({ authenticated: false });
+            })
+        );
     }
 
     function fetchAlbums(port) {
@@ -58,6 +71,10 @@
         return firebase.database().ref().child(`/albums/${id}`)
           .update({ listened });
       });
+    }
+
+    function subscribeToLogout(port) {
+      port.subscribe(logout);
     }
   </script>
 </body>
