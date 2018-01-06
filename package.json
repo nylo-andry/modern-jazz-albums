@@ -1,0 +1,30 @@
+{
+  "name": "modern-jazz-albums",
+  "version": "1.0.0",
+  "description": "A list of modern jazz albums to listen to.",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build:prod"
+  },
+  "keywords": [
+    "jazz",
+    "album",
+    "music",
+    "elm"
+  ],
+  "author": "Ny Fanilo Andrianjafy",
+  "license": "MIT",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.2.0",
+    "gulp-elm": "^0.7.2",
+    "gulp-inject": "^4.3.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "purecss": "^1.0.0",
+    "reset-css": "^2.2.1"
+  }
+}

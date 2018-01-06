@@ -1,0 +1,18 @@
+@import 'reset-css/reset.scss';
+
+.app-content {
+  margin: 3rem auto;
+  width: 30rem;
+}
+
+.header-menu {
+  background-color: #333;
+  color: #eee;
+
+  position: fixed;
+  top: 0;
+
+  .pure-menu-heading {
+    cursor: default;
+  }
+}
