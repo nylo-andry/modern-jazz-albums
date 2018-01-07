@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node ./config/devServer.js",
     "prebuild": "rm -rf dist",
-    "build": "webpack --config config/webpack.config.prod.js"
+    "build": "webpack --config config/webpack.config.prod.js",
+    "predeploy": "npm run build",
+    "deploy": "firebase deploy"
   },
   "keywords": [
     "jazz",
