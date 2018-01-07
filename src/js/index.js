@@ -1,6 +1,22 @@
+import '@sass/main';
+
+import * as firebase from 'firebase';
+import Elm from '@elm/Main';
+
+var config = {
+  apiKey: "AIzaSyBIgPj96shjFZgpjsh63h1UuZKmhfPDcPE",
+  authDomain: "modern-jazz-albums.firebaseapp.com",
+  databaseURL: "https://modern-jazz-albums.firebaseio.com",
+  projectId: "modern-jazz-albums",
+  storageBucket: "modern-jazz-albums.appspot.com",
+  messagingSenderId: "869537054623"
+};
+
+const firebaseApp = firebase.initializeApp(config);
+
 const app = Elm.Main.fullscreen();
 
-firebase.auth().onAuthStateChanged((user) => {
+firebaseApp.auth().onAuthStateChanged((user) => {
   if (user) {
     app.ports.loginStateChange.send({ authenticated: true });
     app.ports.login.unsubscribe(doLogin);
@@ -15,13 +31,13 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
 function logout() {
-  firebase.auth().signOut();
+  firebaseApp.auth().signOut();
 }
 
 function doLogin(credentials) {
-  firebase.auth()
+  firebaseApp.auth()
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-    .then(() => firebase.auth()
+    .then(() => firebaseApp.auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .catch((error) => {
         app.ports.loginStateChange.send({ authenticated: false });
@@ -30,7 +46,7 @@ function doLogin(credentials) {
 }
 
 function fetchAlbums(port) {
-  firebase.database().ref('albums')
+  firebaseApp.database().ref('albums')
     .on('value', albums => {
       port.send(albums.val());
     });
@@ -38,7 +54,7 @@ function fetchAlbums(port) {
 
 function subscribeToAlbumListened(port) {
   port.subscribe(([id, listened]) => {
-    return firebase.database().ref().child(`/albums/${id}`)
+    return firebaseApp.database().ref().child(`/albums/${id}`)
       .update({ listened });
   });
 }
