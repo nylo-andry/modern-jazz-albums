@@ -9,7 +9,7 @@ const devServerConfig = require('./devServerConfig');
 
 const webpackBaseConfig = require('./webpack.config.base');
 
-module.exports = Object.assign({}, webpackBaseConfig(false), {
+module.exports = Object.assign({}, webpackBaseConfig, {
   entry: [
     `webpack-dev-server/client?${devServerConfig.host}:${devServerConfig.port}`,
     'webpack/hot/only-dev-server',

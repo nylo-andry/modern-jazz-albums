@@ -9,7 +9,7 @@ const paths = require('./paths');
 
 const webpackBaseConfig = require('./webpack.config.base');
 
-module.exports = Object.assign({}, webpackBaseConfig(true), {
+module.exports = Object.assign({}, webpackBaseConfig, {
   entry: {
     app: './src/js/index.js',
     vendor: ['firebase'],
