@@ -4,13 +4,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const { paths, devServer } = require('./variables');
+const paths = require('./paths');
+const devServerConfig = require('./devServerConfig');
 
 const webpackBaseConfig = require('./webpack.config.base');
 
 module.exports = Object.assign({}, webpackBaseConfig(false), {
   entry: [
-    `webpack-dev-server/client?${devServer.host}:${devServer.port}`,
+    `webpack-dev-server/client?${devServerConfig.host}:${devServerConfig.port}`,
     'webpack/hot/only-dev-server',
     './src/js/index.js',
   ],
