@@ -11,21 +11,17 @@ const jsPath = path.join(srcPath, 'js');
 const elmPath = path.join(srcPath, 'elm');
 const sassPath = path.join(srcPath, 'scss');
 const nodeModulesPath = path.join(projectRoot, 'node_modules');
+const publicFilesPath = path.join(projectRoot, 'public');
 
 module.exports = {
-  paths: {
-    root: projectRoot,
-    src: srcPath,
-    dist: distPath,
-    assets: assetsPath,
-    js: jsPath,
-    elm: elmPath,
-    sass: sassPath,
-    nodeModules: nodeModulesPath,
-    indexHtml,
-  },
-  devServer: {
-    host: 'http://localhost',
-    port: 8000,
-  },
+  root: projectRoot,
+  src: srcPath,
+  dist: distPath,
+  assets: assetsPath,
+  js: jsPath,
+  elm: elmPath,
+  sass: sassPath,
+  nodeModules: nodeModulesPath,
+  public: publicFilesPath,
+  indexHtml,
 };

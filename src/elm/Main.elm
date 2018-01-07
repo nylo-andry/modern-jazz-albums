@@ -132,7 +132,7 @@ viewAlbum album =
 
 viewAlbumList : List Album -> Html Msg
 viewAlbumList albums =
-    div [] (List.map viewAlbum albums)
+    div [ class "album-list" ] (List.map viewAlbum albums)
 
 
 viewLogin : Html Msg

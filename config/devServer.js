@@ -2,12 +2,16 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 
 const config = require('./webpack.config.dev');
-const { devServer } = require('./variables');
 
 const compiler = webpack(config);
 
+const config = {
+  host: 'http://localhost',
+  port: 8000,
+};
+
 compiler.plugin('done', () => {
-  console.log(`App is running at ${devServer.host}:${devServer.port}`);
+  console.log(`App is running at ${config.host}:${config.port}`);
 });
 
 const server = new WebpackDevServer(compiler, {
@@ -17,4 +21,4 @@ const server = new WebpackDevServer(compiler, {
   stats: 'errors-only',
 });
 
-server.listen(devServer.port);
+server.listen(config.port);

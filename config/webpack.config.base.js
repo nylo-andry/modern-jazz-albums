@@ -1,6 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const { paths } = require('./variables');
+const paths = require('./paths');
 
 function generateBaseConfig(isProduction) {
   return {
@@ -9,6 +9,7 @@ function generateBaseConfig(isProduction) {
         '@elm': paths.elm,
         '@js': paths.js,
         '@sass': paths.sass,
+        '@assets': paths.assets,
       },
       extensions: ['.js', '.elm', '.scss'],
     },
@@ -35,26 +36,25 @@ function generateBaseConfig(isProduction) {
             fallback: 'style-loader',
             use: [
               {
-                loader: 'css-loader',
-                options: {
-                  // If you are having trouble with urls not resolving add this setting.
-                  // See https://github.com/webpack-contrib/css-loader#url
-                  url: false,
-                  minimize: true,
-                  sourceMap: true
-                }
+                loader: 'css-loader'
               },
               {
                 loader: 'sass-loader',
                 options: {
-                  sourceMap: true,
-
                   includePaths: [paths.nodeModules]
-
                 }
               }
             ]
           })
+        },
+        {
+          test: /\.(png|jpg|gif)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {}  
+            }
+          ]
         },
       ],
     },

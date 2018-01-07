@@ -1,0 +1,13 @@
+.pure-form {
+  padding-top: 1rem;
+
+  @media screen 
+    and (min-width: 320px) 
+    and (max-width: 640px) {
+      padding: 1rem;
+
+      .form-control {
+        width: 100%;
+      }  
+    }
+}

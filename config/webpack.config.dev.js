@@ -27,7 +27,7 @@ module.exports = Object.assign({}, webpackBaseConfig(false), {
       template: paths.indexHtml,
     }),
     new CopyWebpackPlugin([
-      { from: paths.assets, to: 'assets' },
+      { from: paths.public },
     ]),
   ],
 });

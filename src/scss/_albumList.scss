@@ -1,0 +1,21 @@
+.album-list {
+  .active {
+    background-color: #1cb841;
+  }
+
+  .non-active {
+    background-color: #ca3c3c;
+  }
+
+  .album-item {
+    padding: .5rem;
+
+    &:nth-of-type(even) {
+      background-color: #ddd;
+    }
+
+    &:nth-of-type(odd) {
+      background-color: #eee;
+    }
+  }
+}
