@@ -23,3 +23,5 @@ The setup is currently bound to one of my firebase project and needs authenticat
         ...
       ]
     }
+
+The app currently only supports login by email and password.
