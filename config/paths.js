@@ -10,6 +10,7 @@ const assetsPath = path.join(srcPath, 'assets');
 const jsPath = path.join(srcPath, 'js');
 const elmPath = path.join(srcPath, 'elm');
 const sassPath = path.join(srcPath, 'scss');
+const reasonPath = path.join(srcPath, 'reason');
 const nodeModulesPath = path.join(projectRoot, 'node_modules');
 const publicFilesPath = path.join(projectRoot, 'public');
 
@@ -21,6 +22,7 @@ module.exports = {
   js: jsPath,
   elm: elmPath,
   sass: sassPath,
+  reason: reasonPath,
   nodeModules: nodeModulesPath,
   public: publicFilesPath,
   indexHtml,

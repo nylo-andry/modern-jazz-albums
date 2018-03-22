@@ -9,8 +9,9 @@ module.exports = {
       '@js': paths.js,
       '@sass': paths.sass,
       '@assets': paths.assets,
+      '@reason': paths.reason,
     },
-    extensions: ['.js', '.elm', '.scss'],
+    extensions: ['.js', '.elm', '.scss', 're'],
   },
   module: {
     rules: [
@@ -21,6 +22,14 @@ module.exports = {
           'elm-hot-loader',
           'elm-webpack-loader',
         ],
+      },
+      {
+        test: /\.(re|rei|ml|mli)$/,
+        use: [
+          {
+            loader: require.resolve('bs-loader')
+          }
+        ]
       },
       {
         test: /\.js$/,

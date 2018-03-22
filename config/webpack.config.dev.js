@@ -13,7 +13,7 @@ module.exports = Object.assign({}, webpackBaseConfig, {
   entry: [
     `webpack-dev-server/client?${devServerConfig.host}:${devServerConfig.port}`,
     'webpack/hot/only-dev-server',
-    './src/js/index.js',
+    './src/reason/index.re',
   ],
   output: {
     filename: 'app.[hash].js',

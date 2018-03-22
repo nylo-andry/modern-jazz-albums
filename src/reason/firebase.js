@@ -9,7 +9,7 @@ const config = {
   messagingSenderId: '869537054623',
 };
 
-module.exports = function initialize(app) {
+export default function initialize(app) {
   const firebaseApp = firebase.initializeApp(config);
 
   function logout() {
@@ -55,4 +55,4 @@ module.exports = function initialize(app) {
       app.ports.login.subscribe(doLogin);
     }
   });
-};
+}
